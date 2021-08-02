@@ -25,6 +25,7 @@ describe('Tiger contract: ',async()=>{
     add2,
     add3,
     add4;
+    const router = '0xD99D1c33F9fC3444f8101754aBC46c52416550D1';
 
 
     beforeEach(async()=>{
@@ -47,8 +48,17 @@ describe('Tiger contract: ',async()=>{
     })
             // Transfer Function Test
     describe('Transfer',()=>{
-        it('transfering tokens to pancake', async()=>{
-
+        let User1;
+        
+        it('transfering tokens to user#1 :', async()=>{
+            await tiger.connect(owner).transfer(add2.address, toWei('100'));
+            User1 = await tiger.balanceOf(add2.address)
+            expect(User1).to.equal(toWei('100'));
+        });
+        it('Selling => Transfer to pancakeSwap : ', async()=>{
+            tiger.connect(owner).SetupEnableWhitelistTrading();
+            await tiger.connect(add2).transfer(router, toWei('100'));
+            // expect(router).to.equal(toWei('100'));
         });
     });
 });

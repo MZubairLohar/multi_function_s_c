@@ -2054,6 +2054,7 @@ contract Tiger is IBEP20, Ownable {
         override
         returns (uint256)
     {
+        console.log(_balances[account]);
         return _balances[account];
     }
 

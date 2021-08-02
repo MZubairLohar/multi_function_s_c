@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/zubair/Documents/smart contracts/multi_function_s_c/contracts/Tiger.sol": {
-      "lastModificationDate": 1627802684402,
-      "contentHash": "c7e229b5a000466a8309365b09f77439",
+      "lastModificationDate": 1627902821962,
+      "contentHash": "3eb61341f83efd5fae06320fc16c201c",
       "sourceName": "contracts/Tiger.sol",
       "solcConfig": {
         "version": "0.8.0",
