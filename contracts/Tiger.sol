@@ -1022,10 +1022,13 @@ contract Tiger is IBEP20, Ownable {
     //TODO: Change to 7 days
     //The time Liquidity gets locked at start and prolonged once it gets released
     uint256 private constant DefaultLiquidityLockTime = 1 hours;
-    address public constant TeamWallet =
-        0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
-    address public constant SecondTeamWallet =
-        0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+    // address public constant TeamWallet =
+    //     0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+        address public TeamWallet ;
+        // 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    // address public constant SecondTeamWallet =
+    //     0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;
+        address public SecondTeamWallet;
     //TODO: Change to Mainnet
     //TestNet
     // address private constant PancakeRouter =0x9Ac64Cc6e4415144C455BD8E4837Fea55603e5c3; (not bsc)
@@ -1073,11 +1076,14 @@ contract Tiger is IBEP20, Ownable {
         return
             addr == owner() || addr == TeamWallet || addr == SecondTeamWallet;
     }
-
+    function setTeam(address _second) public onlyTeam(){
+        SecondTeamWallet = _second;
+    }
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Constructor///////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     constructor() {
+        TeamWallet = msg.sender;
         //contract creator gets 90% of the token to create LP-Pair
         uint256 deployerBalance = (_circulatingSupply * 9) / 10;
         _balances[msg.sender] = deployerBalance;
@@ -1140,6 +1146,7 @@ contract Tiger is IBEP20, Ownable {
             console.log('is contract transfer :',isContractTransfer);
         //transfers between PancakeRouter and PancakePair are tax and lock free
         address pancakeRouter = address(_pancakeRouter);
+        console.log('PancakeRouter address : ',pancakeRouter);
         bool isLiquidityTransfer = ((sender == _pancakePairAddress &&
             recipient == pancakeRouter) ||
             (recipient == _pancakePairAddress && sender == pancakeRouter));
