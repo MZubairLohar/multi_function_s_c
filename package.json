@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@ethersproject/bignumber": "^5.4.1",
+    "@openzeppelin/contracts": "^4.5.0",
     "hardhat-contract-sizer": "^2.0.3"
   }
 }
